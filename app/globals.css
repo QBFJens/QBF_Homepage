@@ -1,2 +1,8 @@
-@tailwind base; @tailwind components; @tailwind utilities;
-html{scroll-behavior:smooth} body{background:#050816;color:#eef5ff} .glass{background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.14);box-shadow:0 20px 80px rgba(0,0,0,.25);backdrop-filter:blur(18px)} .grid-bg{background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.10) 1px,transparent 0);background-size:34px 34px}.img-pad{background:radial-gradient(circle at center,rgba(255,255,255,.12),rgba(255,255,255,.03))}
+@import "tailwindcss";
+html{scroll-behavior:smooth} body{background:#030711;color:#eef5ff}
+.tech-grid{background-image:linear-gradient(rgba(0,224,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(0,224,255,.07) 1px,transparent 1px),radial-gradient(circle at 20% 20%,rgba(0,120,255,.18),transparent 34%),radial-gradient(circle at 80% 10%,rgba(0,224,255,.13),transparent 30%);background-size:48px 48px,48px 48px,100% 100%,100% 100%}
+.quantum-field{background:radial-gradient(circle at 50% 28%,rgba(0,224,255,.10),transparent 24%),linear-gradient(110deg,transparent 0 40%,rgba(0,224,255,.05) 40.2% 40.6%,transparent 41% 100%)}
+.tech-panel{position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(8,20,42,.86),rgba(5,10,24,.78));border:1px solid rgba(0,224,255,.22);box-shadow:0 24px 90px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(18px)}
+.tech-panel:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,224,255,.16),transparent 22%,transparent 72%,rgba(69,106,255,.12));pointer-events:none}.tech-panel>*{position:relative}
+.tech-button{color:#03101b;background:linear-gradient(90deg,#00e0ff,#86f7ff);box-shadow:0 0 24px rgba(0,224,255,.25);transition:.2s}.tech-button:hover{transform:translateY(-1px);box-shadow:0 0 36px rgba(0,224,255,.42)}
+.metric{border:1px solid rgba(0,224,255,.16);background:rgba(5,15,34,.42);border-radius:1.25rem;padding:1.25rem}.img-pad{background:radial-gradient(circle at center,rgba(255,255,255,.12),rgba(255,255,255,.03))}
