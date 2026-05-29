@@ -1,0 +1,2 @@
+@tailwind base; @tailwind components; @tailwind utilities;
+html{scroll-behavior:smooth} body{background:#050816;color:#eef5ff} .glass{background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.14);box-shadow:0 20px 80px rgba(0,0,0,.25);backdrop-filter:blur(18px)} .grid-bg{background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.10) 1px,transparent 0);background-size:34px 34px}.img-pad{background:radial-gradient(circle at center,rgba(255,255,255,.12),rgba(255,255,255,.03))}
