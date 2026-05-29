@@ -1,6 +1,3 @@
-'use client'
-
-import { useEffect, useState } from 'react'
 import { ArrowRight, Atom, CircuitBoard, Crosshair, GraduationCap, Mail, Radar } from 'lucide-react'
 
 const email = 'info@qbitflow.com'
@@ -10,15 +7,8 @@ const nav = [
   ['Products', '#products'], ['Projects', '#projects'], ['Engineering', '#engineering'], ['Training', '#training'], ['Who we are', '#team']
 ]
 
-const heroImages = [
-  { src: '/briefing/image2.png', alt: 'Reliable alkali metal source transport case', fit: 'object-cover' },
-  { src: '/briefing/image3.jpg', alt: 'Preparation chamber for cold atom experiments', fit: 'object-cover' },
-  { src: '/briefing/image4.png', alt: 'Modular ultra-high vacuum system', fit: 'object-contain img-pad p-6' },
-  { src: '/briefing/image8.png', alt: 'Hybrid quantum inertial sensor concept', fit: 'object-contain img-pad p-6' },
-]
-
 const products = [
-  { title: 'Reliable Alkali Metal Sources (RAMS)', image: '/briefing/image2.png', secondary: '/briefing/image5.png', subject: 'Quote request for RAMS', datasheet: '/datasheets/rams-datasheet.pdf', text: 'Our reliable alkali metal sources (RAMS) provide a stable, high-purity supply of atomic vapor for quantum and atomic physics applications. Designed for long lifetime, reproducible flux, and reliable integration into ultra-high vacuum systems, they ensure consistent performance in demanding research and sensing environments.' },
+  { title: 'Reliable Alkali Metal Sources (RAMS)', image: '/briefing/image5.png', subject: 'Quote request for RAMS', datasheet: '/datasheets/rams-datasheet.pdf', text: 'Our reliable alkali metal sources (RAMS) provide a stable, high-purity supply of atomic vapor for quantum and atomic physics applications. Designed for long lifetime, reproducible flux, and reliable integration into ultra-high vacuum systems, they ensure consistent performance in demanding research and sensing environments.' },
   { title: 'Preparation Chamber System', image: '/briefing/image3.jpg', subject: 'Quote request for Preparation Chamber System', datasheet: '/datasheets/preparation-chamber-datasheet.pdf', text: 'Our preparation chamber for 2D+ MOT systems enables efficient pre-cooling and transport of atomic beams under ultra-high vacuum conditions. Optimized for high flux, optical access, and stable operation even in harsh environments, it provides a reliable atomic source stage for advanced quantum sensing and cold atom experiments.' }
 ]
 
@@ -36,42 +26,14 @@ const team = [
 ]
 
 
-function HeroCarousel() {
-  const [active, setActive] = useState(0)
-
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setActive((current) => (current + 1) % heroImages.length)
-    }, 3000)
-
-    return () => window.clearInterval(timer)
-  }, [])
-
+function HeroImage() {
   return <div className="tech-panel relative rounded-[2rem] p-4">
-    <div className="absolute right-6 top-6 z-10 rounded-full border border-cyan/30 bg-ink/70 px-3 py-1 text-xs uppercase tracking-[.25em] text-cyan">Prototype stack</div>
     <div className="relative h-[28rem] overflow-hidden rounded-3xl">
-      {heroImages.map((image, index) => (
-        <img
-          key={image.src}
-          src={image.src}
-          alt={image.alt}
-          className={`absolute inset-0 h-full w-full transition-opacity duration-1000 ${image.fit} ${index === active ? 'opacity-100' : 'opacity-0'}`}
-        />
-      ))}
-      <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-ink/80 to-transparent p-5">
-        <div className="text-xs uppercase tracking-[.25em] text-cyan">Quantum technology platform</div>
-        <div className="flex gap-2">
-          {heroImages.map((image, index) => (
-            <button
-              key={image.src}
-              type="button"
-              aria-label={`Show slide ${index + 1}`}
-              onClick={() => setActive(index)}
-              className={`h-2.5 rounded-full transition-all ${index === active ? 'w-8 bg-cyan' : 'w-2.5 bg-white/35 hover:bg-white/60'}`}
-            />
-          ))}
-        </div>
-      </div>
+      <img
+        src="/briefing/image2.png"
+        alt="QBITFLOW quantum technology hardware"
+        className="h-full w-full object-cover"
+      />
     </div>
   </div>
 }
@@ -95,19 +57,19 @@ export default function Home() {
     <section id="home" className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-24 md:grid-cols-[1.05fr_.95fr] md:py-32">
       <div className="absolute left-1/2 top-16 -z-10 h-96 w-96 rounded-full bg-cyan/20 blur-3xl" />
       <div><p className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/5 px-4 py-2 text-sm text-cyan shadow-[0_0_30px_rgba(0,224,255,.12)]"><Atom size={16}/> Quantum sensing // UHV systems // Field-ready engineering</p><h1 className="max-w-4xl text-5xl font-semibold leading-tight tracking-tight text-white md:text-7xl">We turn cutting-edge quantum research into real-world impact.</h1><p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300">Born out of university research, QBITFLOW develops next-generation technologies for quantum sensors and transfers them from the lab into practical applications. We combine deep scientific expertise with engineering excellence to transform fundamental breakthroughs into robust, scalable solutions.</p><div className="mt-9 flex flex-wrap gap-4"><a href="#products" className="tech-button inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold">Explore products <ArrowRight size={18}/></a><a href="#projects" className="rounded-full border border-cyan/25 bg-white/[.03] px-6 py-3 font-semibold text-white transition hover:border-cyan hover:text-cyan">See projects</a></div></div>
-      <HeroCarousel />
+      <HeroImage />
     </section>
 
     <section className="border-y border-cyan/15 bg-cyan/[.025] px-5 py-10"><div className="mx-auto grid max-w-7xl gap-6 text-center md:grid-cols-3"><p className="metric"><Crosshair className="mx-auto mb-3 text-cyan"/><b>Ultra-precise measurements</b><br/><span className="text-slate-400">Navigation, geophysics and infrastructure monitoring.</span></p><p className="metric"><CircuitBoard className="mx-auto mb-3 text-cyan"/><b>Lab-to-field engineering</b><br/><span className="text-slate-400">From concept to deployment.</span></p><p className="metric"><Radar className="mx-auto mb-3 text-cyan"/><b>Robust quantum systems</b><br/><span className="text-slate-400">Built for demanding environments.</span></p></div></section>
 
     <section id="products" className="mx-auto max-w-7xl px-5 py-24"><SectionTitle eyebrow="Products" title="Components that power next-generation quantum technologies" text="High-quality alkali metal sources and advanced vacuum system components for quantum experiments and operation in harsh environments." />
-      <div className="grid gap-8">{products.map((p) => <article key={p.title} className="tech-panel grid items-center gap-8 rounded-[2rem] p-6 md:grid-cols-2"><div className="grid gap-4 md:grid-cols-2"><img src={p.image} alt={p.title} className="h-72 w-full rounded-3xl object-contain img-pad p-4"/>{p.secondary && <img src={p.secondary} alt="RAMS hardware" className="h-72 w-full rounded-3xl object-cover"/>}</div><div><p className="mb-3 text-sm uppercase tracking-[.25em] text-cyan">Product system</p><h3 className="text-3xl font-semibold text-white">{p.title}</h3><p className="mt-5 text-lg leading-8 text-slate-300">{p.text}</p><div className="mt-7 flex flex-wrap gap-3"><a href={quote(p.subject)} className="tech-button inline-flex items-center gap-2 rounded-full px-5 py-3 font-semibold"><Mail size={18}/> Request a quote</a><a href={p.datasheet} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-white/[.03] px-5 py-3 font-semibold text-white transition hover:border-cyan hover:text-cyan">Learn More <ArrowRight size={18}/></a></div></div></article>)}</div>
+      <div className="grid gap-8">{products.map((p) => <article key={p.title} className="tech-panel grid items-center gap-8 rounded-[2rem] p-6 md:grid-cols-2"><div><img src={p.image} alt={p.title} className="h-72 w-full rounded-3xl object-contain img-pad p-4"/></div><div><p className="mb-3 text-sm uppercase tracking-[.25em] text-cyan">Product system</p><h3 className="text-3xl font-semibold text-white">{p.title}</h3><p className="mt-5 text-lg leading-8 text-slate-300">{p.text}</p><div className="mt-7 flex flex-wrap gap-3"><a href={quote(p.subject)} className="tech-button inline-flex items-center gap-2 rounded-full px-5 py-3 font-semibold"><Mail size={18}/> Request a quote</a><a href={p.datasheet} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-white/[.03] px-5 py-3 font-semibold text-white transition hover:border-cyan hover:text-cyan">Learn More <ArrowRight size={18}/></a></div></div></article>)}</div>
     </section>
 
     <section id="projects" className="bg-white/[.03] px-5 py-24"><div className="mx-auto max-w-7xl"><SectionTitle eyebrow="Projects" title="Research projects for field-ready quantum systems" text="Together with academic and industrial partners, we develop new architectures and translate scientific breakthroughs into scalable solutions." />
       <div className="grid gap-7">{projects.map(p => <article key={p.title} className="tech-panel grid gap-8 rounded-[2rem] p-6 md:grid-cols-[.8fr_1.2fr]"><div><img src={p.image} alt={p.title} className="h-80 w-full rounded-3xl object-contain img-pad p-4"/>{p.logo && <img src={p.logo} alt="ESA Business Incubation Centre Northern Germany" className="mt-5 rounded-2xl bg-white p-3"/>}</div><div className="self-center"><h3 className="text-3xl font-semibold text-white">{p.title}</h3><p className="mt-5 text-lg leading-8 text-slate-300">{p.text}</p></div></article>)}</div></div></section>
 
-    <section id="engineering" className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-24 md:grid-cols-2"><div className="grid gap-5"><img src="/briefing/image9.png" alt="Custom vacuum component" className="rounded-[2rem] object-cover"/><img src="/briefing/image8.png" alt="Hybrid sensor concept" className="rounded-[2rem] object-contain img-pad p-4"/></div><div><p className="mb-3 text-sm font-semibold uppercase tracking-[.3em] text-cyan">Engineering Solutions</p><h2 className="text-4xl font-semibold text-white md:text-5xl">Custom components and subsystem designs tailored to your needs.</h2><p className="mt-6 text-lg leading-8 text-slate-300">With engineering expertise from the design, assembly and test of quantum sensors for challenging applications in demanding environments, we provide individual vacuum and opto-mechanical parts as well as fully integrated subsystems.</p><a href={`mailto:${email}?subject=${encodeURIComponent('Engineering solutions request')}`} className="tech-button mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold">Challenge us <ArrowRight size={18}/></a></div></section>
+    <section id="engineering" className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-24 md:grid-cols-2"><div><img src="/briefing/image8.png" alt="Hybrid sensor concept" className="rounded-[2rem] object-contain img-pad p-6"/></div><div><p className="mb-3 text-sm font-semibold uppercase tracking-[.3em] text-cyan">Engineering Solutions</p><h2 className="text-4xl font-semibold text-white md:text-5xl">Custom components and subsystem designs tailored to your needs.</h2><p className="mt-6 text-lg leading-8 text-slate-300">With engineering expertise from the design, assembly and test of quantum sensors for challenging applications in demanding environments, we provide individual vacuum and opto-mechanical parts as well as fully integrated subsystems.</p><a href={`mailto:${email}?subject=${encodeURIComponent('Engineering solutions request')}`} className="tech-button mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold">Challenge us <ArrowRight size={18}/></a></div></section>
 
     <section id="training" className="bg-white/[.03] px-5 py-24"><div className="mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-[.8fr_1.2fr]"><img src="/briefing/image10.jpg" alt="Quantum technology training group" className="rounded-[2rem]"/><div><p className="mb-3 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[.3em] text-cyan"><GraduationCap size={18}/> Training & Education</p><h2 className="text-4xl font-semibold text-white md:text-5xl">Practical quantum sensor training for technical teams.</h2><p className="mt-6 text-lg leading-8 text-slate-300">The field of quantum technologies is growing rapidly, demanding trained personnel for design, integration, test and operation of quantum sensor systems. We offer practical workshops, system-level training, and application-focused courses that empower teams to design, operate, and advance quantum sensing technologies with confidence.</p></div></div></section>
 
