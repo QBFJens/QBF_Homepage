@@ -1,10 +1,20 @@
-import { ArrowRight, Atom, CircuitBoard, Crosshair, GraduationCap, Mail, Radar, Satellite, Sparkles } from 'lucide-react'
+'use client'
+
+import { useEffect, useState } from 'react'
+import { ArrowRight, Atom, CircuitBoard, Crosshair, GraduationCap, Mail, Radar } from 'lucide-react'
 
 const email = 'info@qbitflow.com'
 const quote = (subject: string) => `mailto:${email}?subject=${encodeURIComponent(subject)}`
 
 const nav = [
   ['Products', '#products'], ['Projects', '#projects'], ['Engineering', '#engineering'], ['Training', '#training'], ['Who we are', '#team']
+]
+
+const heroImages = [
+  { src: '/briefing/image2.png', alt: 'Reliable alkali metal source transport case', fit: 'object-cover' },
+  { src: '/briefing/image3.jpg', alt: 'Preparation chamber for cold atom experiments', fit: 'object-cover' },
+  { src: '/briefing/image4.png', alt: 'Modular ultra-high vacuum system', fit: 'object-contain img-pad p-6' },
+  { src: '/briefing/image8.png', alt: 'Hybrid quantum inertial sensor concept', fit: 'object-contain img-pad p-6' },
 ]
 
 const products = [
@@ -25,6 +35,47 @@ const team = [
   { name: 'Samuel Hill', role: 'Co-Founder', image: '/briefing/image14.jpeg', bio: 'Senior Consultant at the German Research Center for Artificial Intelligence (DFKI) Robotics Innovation Center. 20+ years in photonic based hardware-software development and commercialization.' }
 ]
 
+
+function HeroCarousel() {
+  const [active, setActive] = useState(0)
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActive((current) => (current + 1) % heroImages.length)
+    }, 3000)
+
+    return () => window.clearInterval(timer)
+  }, [])
+
+  return <div className="tech-panel relative rounded-[2rem] p-4">
+    <div className="absolute right-6 top-6 z-10 rounded-full border border-cyan/30 bg-ink/70 px-3 py-1 text-xs uppercase tracking-[.25em] text-cyan">Prototype stack</div>
+    <div className="relative h-[28rem] overflow-hidden rounded-3xl">
+      {heroImages.map((image, index) => (
+        <img
+          key={image.src}
+          src={image.src}
+          alt={image.alt}
+          className={`absolute inset-0 h-full w-full transition-opacity duration-1000 ${image.fit} ${index === active ? 'opacity-100' : 'opacity-0'}`}
+        />
+      ))}
+      <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-ink/80 to-transparent p-5">
+        <div className="text-xs uppercase tracking-[.25em] text-cyan">Quantum technology platform</div>
+        <div className="flex gap-2">
+          {heroImages.map((image, index) => (
+            <button
+              key={image.src}
+              type="button"
+              aria-label={`Show slide ${index + 1}`}
+              onClick={() => setActive(index)}
+              className={`h-2.5 rounded-full transition-all ${index === active ? 'w-8 bg-cyan' : 'w-2.5 bg-white/35 hover:bg-white/60'}`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
 function SectionTitle({ eyebrow, title, text }: { eyebrow: string; title: string; text?: string }) {
   return <div className="mx-auto mb-12 max-w-3xl text-center"><p className="mb-3 text-sm font-semibold uppercase tracking-[.3em] text-cyan">{eyebrow}</p><h2 className="text-3xl font-semibold tracking-tight text-white md:text-5xl">{title}</h2>{text && <p className="mt-5 text-lg leading-8 text-slate-300">{text}</p>}</div>
 }
@@ -44,7 +95,7 @@ export default function Home() {
     <section id="home" className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-24 md:grid-cols-[1.05fr_.95fr] md:py-32">
       <div className="absolute left-1/2 top-16 -z-10 h-96 w-96 rounded-full bg-cyan/20 blur-3xl" />
       <div><p className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/5 px-4 py-2 text-sm text-cyan shadow-[0_0_30px_rgba(0,224,255,.12)]"><Atom size={16}/> Quantum sensing // UHV systems // Field-ready engineering</p><h1 className="max-w-4xl text-5xl font-semibold leading-tight tracking-tight text-white md:text-7xl">We turn cutting-edge quantum research into real-world impact.</h1><p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300">Born out of university research, QBITFLOW develops next-generation technologies for quantum sensors and transfers them from the lab into practical applications. We combine deep scientific expertise with engineering excellence to transform fundamental breakthroughs into robust, scalable solutions.</p><div className="mt-9 flex flex-wrap gap-4"><a href="#products" className="tech-button inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold">Explore products <ArrowRight size={18}/></a><a href="#projects" className="rounded-full border border-cyan/25 bg-white/[.03] px-6 py-3 font-semibold text-white transition hover:border-cyan hover:text-cyan">See projects</a></div></div>
-      <div className="tech-panel relative rounded-[2rem] p-4"><div className="absolute right-6 top-6 z-10 rounded-full border border-cyan/30 bg-ink/70 px-3 py-1 text-xs uppercase tracking-[.25em] text-cyan">Prototype stack</div><div className="grid gap-4"><img src="/briefing/image2.png" alt="Alkali metal source transport case" className="h-56 w-full rounded-3xl object-cover"/><div className="grid grid-cols-2 gap-4"><img src="/briefing/image3.jpg" alt="Preparation chamber" className="h-40 rounded-3xl object-cover"/><img src="/briefing/image4.png" alt="Modular vacuum system" className="h-40 rounded-3xl object-contain img-pad p-3"/></div></div></div>
+      <HeroCarousel />
     </section>
 
     <section className="border-y border-cyan/15 bg-cyan/[.025] px-5 py-10"><div className="mx-auto grid max-w-7xl gap-6 text-center md:grid-cols-3"><p className="metric"><Crosshair className="mx-auto mb-3 text-cyan"/><b>Ultra-precise measurements</b><br/><span className="text-slate-400">Navigation, geophysics and infrastructure monitoring.</span></p><p className="metric"><CircuitBoard className="mx-auto mb-3 text-cyan"/><b>Lab-to-field engineering</b><br/><span className="text-slate-400">From concept to deployment.</span></p><p className="metric"><Radar className="mx-auto mb-3 text-cyan"/><b>Robust quantum systems</b><br/><span className="text-slate-400">Built for demanding environments.</span></p></div></section>
